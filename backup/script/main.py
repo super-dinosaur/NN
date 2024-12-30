@@ -1,1 +1,0 @@
-from improved_fnet import ImprovedConvNet
