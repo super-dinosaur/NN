@@ -3,10 +3,11 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 from torchvision import datasets, transforms
+from icecream import ic
 
 BATCH_SIZE=512 # 批次大小
 EPOCHS=20 # 总共训练批次
-DEVICE='cpu'
+DEVICE='cuda'
 
 class ConvNet(nn.Module):
     def __init__(self):
