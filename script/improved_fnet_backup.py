@@ -12,18 +12,6 @@ BATCH_SIZE = 512  # 批次大小
 EPOCHS = 20       # 总共训练批次
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'  # 自动检测设备
 
-# 设置日志文件路径
-log_filename = f'./ImprovedConvNet_{BATCH_SIZE}_{EPOCHS}_{DEVICE}_log.txt'
-
-# 清空日志文件内容
-open(log_filename, 'w').close()
-
-# 配置日志
-logging.basicConfig(level=logging.INFO, 
-                    format='%(asctime)s - %(message)s', 
-                    filename=log_filename, 
-                    filemode='a')  # 追加模式
-
 class ImprovedConvNet(nn.Module):
     def __init__(self):
         super().__init__()
