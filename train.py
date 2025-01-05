@@ -10,6 +10,8 @@ import torch.optim as optim
 from module import resnet34, resnet101
 import torchvision.models.resnet
 
+from torch.utils.data import DataLoader
+
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 print(device)
@@ -33,7 +35,7 @@ train_dataset = datasets.ImageFolder(root=image_path + "train",
 train_num = len(train_dataset)
 
 # {'daisy':0, 'dandelion':1, 'roses':2, 'sunflower':3, 'tulips':4}
-flower_list = train_dataset.class_to_idx
+flower_list = train_dataset.class_to_idx    #actually a dict
 cla_dict = dict((val, key) for key, val in flower_list.items())
 # write dict into json file
 json_str = json.dumps(cla_dict, indent=4)
@@ -41,14 +43,16 @@ with open('class_indices.json', 'w') as json_file:
     json_file.write(json_str)
 
 batch_size = 16
-train_loader = torch.utils.data.DataLoader(train_dataset,
-                                           batch_size=batch_size, shuffle=True,
-                                           num_workers=0)
+train_loader = DataLoader(
+    train_dataset,
+    batch_size=batch_size, shuffle=True,
+    num_workers=0
+)
 
 validate_dataset = datasets.ImageFolder(root=image_path + "/val",
                                         transform=data_transform["val"])
 val_num = len(validate_dataset)
-validate_loader = torch.utils.data.DataLoader(validate_dataset,
+validate_loader = DataLoader(validate_dataset,
                                               batch_size=batch_size, shuffle=False,
                                               num_workers=0)
 #net = resnet34()
