@@ -1,0 +1,3 @@
+backup
+#屏蔽所有的目录底下的pycache/
+**/pycache/

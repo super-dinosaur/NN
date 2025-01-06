@@ -108,7 +108,8 @@ class ResNet(nn.Module):
         if stride != 1 or self.in_channel != channel * block.expansion:
             downsample = nn.Sequential(
                 nn.Conv2d(self.in_channel, channel * block.expansion, kernel_size=1, stride=stride, bias=False),
-                nn.BatchNorm2d(channel * block.expansion))
+                nn.BatchNorm2d(channel * block.expansion)
+            )
 
         layers = []
         layers.append(block(self.in_channel, channel, downsample=downsample, stride=stride))

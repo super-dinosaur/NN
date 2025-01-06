@@ -29,3 +29,15 @@ from icecream import ic
 
 # ------------------------------------------------------------------------------------------------------------------------------
 
+# # With Learnable Parameters
+# m = nn.BatchNorm2d(100)
+# # Without Learnable Parameters
+# m = nn.BatchNorm2d(100, affine=False)
+# input = torch.randn(20, 100, 35, 45)
+# output = m(input)
+
+# ------------------------------------------------------------------------------------------------------------------------------
+
+import inspect
+from torchvision.models import resnet
+ic(inspect.getfile(resnet))
